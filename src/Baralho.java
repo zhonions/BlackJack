@@ -8,7 +8,8 @@ public class Baralho {
 
     public void iniciarbaralho() {
         if (baralho.vazia()) {
-            criarBaralho();
+            Jogador jogador = new Jogador();
+            criarBaralho(jogador);
         }
 
     }
@@ -32,222 +33,259 @@ public class Baralho {
     }
 
 
-    private void criarBaralho() {
+    private void criarBaralho(Jogador jogador) {
         Colors colors = new Colors();
-        Carta c1;
+        Carta carta;
         //COPAS
-        c1 = new Carta("┌───────┐\n" +
+        carta = new Carta("┌───────┐\n" +
                 "│A      │\n" +
                 "│   ♥   │\n" +
                 "│       │\n" +
                 "│   ♥   │\n" +
                 "│      A│\n" +
-                "└───────┘",10);
-        baralho.inserir(c1);
+                "└───────┘");
+        if(jogador.getPontos()+11<=21){
+            carta.setValor(11);
+        }else {
+            carta.setValor(1);
+        }
+        baralho.inserir(carta);
         for (int i = 2; i < 10; i++) {
-            c1 = new Carta("┌───────┐\n" +
+            carta = new Carta("┌───────┐\n" +
                     "│" + i + "      │\n" +
                     "│   ♥   │\n" +
                     "│       │\n" +
                     "│   ♥   │\n" +
                     "│      " + i + "│\n" +
                     "└───────┘\n");
-            baralho.inserir(c1);
+            carta.setValor(i);
+            baralho.inserir(carta);
         }
-
-        c1 = new Carta("┌───────┐\n" +
+        carta = new Carta("┌───────┐\n" +
                 "│10     │\n" +
                 "│   ♥   │\n" +
                 "│   |   │\n" +
                 "│   ♥   │\n" +
                 "│     10│\n" +
-                "└───────┘\n",10);
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+                "└───────┘\n");
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│J      │\n" +
                 "│   ♥   │\n" +
                 "│  \\│/  │\n" +
                 "│   ↑   │\n" +
                 "│      J│\n" +
                 "└───────┘");
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│Q      │\n" +
                 "│   ♥   │\n" +
                 "│  /█\\  │\n" +
                 "│   ↓   │\n" +
                 "│      Q│\n" +
                 "└───────┘\n");
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│K      │\n" +
                 "│   ♥   │\n" +
                 "│  /█\\  │\n" +
                 "│   █   │\n" +
                 "│      K│\n" +
                 "└───────┘\n");
-        baralho.inserir(c1);
+        carta.setValor(10);
+        baralho.inserir(carta);
 
         //PAUS
-        c1 = new Carta("┌───────┐\n" +
+        carta = new Carta("┌───────┐\n" +
                 "│A      │\n" +
                 "│   ♣   │\n" +
                 "│       │\n" +
                 "│   ♣   │\n" +
                 "│      A│\n" +
                 "└───────┘");
-        baralho.inserir(c1);
+        if(jogador.getPontos()+11<=21){
+            carta.setValor(11);
+        }else {
+            carta.setValor(1);
+        }
+        baralho.inserir(carta);
         for (int i = 2; i < 10; i++) {
-            c1 = new Carta("┌───────┐\n" +
+            carta = new Carta("┌───────┐\n" +
                     "│" + i + "      │\n" +
                     "│   ♣   │\n" +
                     "│       │\n" +
                     "│   ♣   │\n" +
                     "│      " + i + "│\n" +
                     "└───────┘");
-            baralho.inserir(c1);
-
+            carta.setValor(i);
+            baralho.inserir(carta);
         }
-        c1 = new Carta("┌───────┐\n" +
+        carta = new Carta("┌───────┐\n" +
                 "│10     │\n" +
                 "│   ♣   │\n" +
                 "│   |   │\n" +
                 "│   ♣   │\n" +
                 "│     10│\n" +
-                "└───────┘\n",10);
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+                "└───────┘\n");
+        carta.setValor(10);
+        baralho.inserir(carta);
+
+        carta = new Carta("┌───────┐\n" +
                 "│J      │\n" +
                 "│   ♣   │\n" +
                 "│  /│\\  │\n" +
                 "│   |   │\n" +
                 "│      J│\n" +
                 "└───────┘\n");
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│Q      │\n" +
                 "│   ♣   │\n" +
                 "│  /█\\  │\n" +
                 "│   │   │\n" +
                 "│      Q│\n" +
                 "└───────┘\n");
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│K      │\n" +
                 "│   ♣   │\n" +
                 "│  /█\\  │\n" +
                 "│   █   │\n" +
                 "│      K│\n" +
                 "└───────┘\n");
-        baralho.inserir(c1);
+        carta.setValor(10);
+        baralho.inserir(carta);
 
         //OURO
-        c1 = new Carta( "┌───────┐\n" +
+        carta = new Carta( "┌───────┐\n" +
                 "│A      │\n" +
                 "│   ♦   │\n" +
                 "│       │\n" +
                 "│   ♦   │\n" +
                 "│      A│\n" +
                 "└───────┘");
-        baralho.inserir(c1);
+        if(jogador.getPontos()+11<=21){
+            carta.setValor(11);
+        }else {
+            carta.setValor(1);
+        }
+        baralho.inserir(carta);
         for (int i = 2; i < 10; i++) {
-            c1 = new Carta("┌───────┐\n" +
+            carta = new Carta("┌───────┐\n" +
                     "│" + i + "      │\n" +
                     "│   ♦   │\n" +
                     "│       │\n" +
                     "│   ♦   │\n" +
                     "│      " + i + "│\n" +
                     "└───────┘");
-            baralho.inserir(c1);
+            carta.setValor(i);
+            baralho.inserir(carta);
 
         }
-        c1 = new Carta("┌───────┐\n" +
+        carta = new Carta("┌───────┐\n" +
                 "│10     │\n" +
                 "│   ♦   │\n" +
                 "│   |   │\n" +
                 "│   ♦   │\n" +
                 "│     10│\n" +
                 "└───────┘\n");
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│J      │\n" +
                 "│   ♦   │\n" +
                 "│  /│\\  │\n" +
                 "│   |   │\n" +
                 "│      J│\n" +
                 "└───────┘");
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│Q      │\n" +
                 "│   ♦   │\n" +
                 "│  /█\\  │\n" +
                 "│   │   │\n" +
                 "│      Q│\n" +
                 "└───────┘");
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│K      │\n" +
                 "│   ♦   │\n" +
                 "│  /█\\  │\n" +
                 "│   █   │\n" +
                 "│      K│\n" +
                 "└───────┘\n");
-        baralho.inserir(c1);
+        carta.setValor(10);
+        baralho.inserir(carta);
 
         //ESPADAS
-        c1 = new Carta("┌───────┐\n" +
+        carta = new Carta("┌───────┐\n" +
                 "│A      │\n" +
                 "│   ♠   │\n" +
                 "│       │\n" +
                 "│   ♠   │\n" +
                 "│      A│\n" +
                 "└───────┘");
-        baralho.inserir(c1);
+        if(jogador.getPontos()+11<=21){
+            carta.setValor(11);
+        }else {
+            carta.setValor(1);
+        }
+        baralho.inserir(carta);
         for (int i = 2; i < 10; i++) {
-            c1 = new Carta("┌───────┐\n" +
+            carta = new Carta("┌───────┐\n" +
                     "│" + i + "      │\n" +
                     "│   ♠   │\n" +
                     "│       │\n" +
                     "│   ♠   │\n" +
                     "│      " + i + "│\n" +
                     "└───────┘");
-            baralho.inserir(c1);
+            carta.setValor(i);
+            baralho.inserir(carta);
 
         }
-        c1 = new Carta("┌───────┐\n" +
+        carta = new Carta("┌───────┐\n" +
                 "│10     │\n" +
                 "│   ♠   │\n" +
                 "│   |   │\n" +
                 "│   ♠   │\n" +
                 "│     10│\n" +
                 "└───────┘\n");
-        c1.setValor(10);
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│J      │\n" +
                 "│   ♠   │\n" +
                 "│  /│\\  │\n" +
                 "│   |   │\n" +
                 "│      J│\n" +
                 "└───────┘\n");
-        c1.setValor(10);
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│Q      │\n" +
                 "│   ♠   │\n" +
                 "│  /█\\  │\n" +
                 "│   │   │\n" +
                 "│      Q│\n" +
                 "└───────┘\n");
-        baralho.inserir(c1);
-        c1 = new Carta("┌───────┐\n" +
+        carta.setValor(10);
+        baralho.inserir(carta);
+        carta = new Carta("┌───────┐\n" +
                 "│K      │\n" +
                 "│   ♠   │\n" +
                 "│  /█\\  │\n" +
                 "│   █   │\n" +
                 "│      K│\n" +
                 "└───────┘\n");
-        baralho.inserir(c1);
+        baralho.inserir(carta);
+        carta.setValor(10);
 
 
     }

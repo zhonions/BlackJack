@@ -2,16 +2,24 @@ public class Colors {
     private String lightBlue = "\u001B[38;5;87m";
     private String yellow = "\u001b[38;5;11m";
     private String lightYellow = "\u001b[38;5;229m";
-
     private String red = "\u001b[38;5;197m";
     private String blue = "\u001b[38;5;39m";
     private String green = "\u001b[38;5;83m";
     private String redDark = "\u001b[38;5;124m";
     private String orange = "\u001b[38;5;208m";
+    private String black = "\u001b[38;5;0m";
+    private String backBlue = "\u001b[48;5;27m";
+    private String backWhite = "\u001b[48;5;231m";
     private String bold = "\u001b[1m";
     private String resetColor = "\u001b[0m";
 
-    private String backBlue = "\u001b[48;5;27m";
+    public String getBlack() {
+        return black;
+    }
+
+    public String getBackWhite() {
+        return backWhite;
+    }
 
     public String getBackBlue() {
         return backBlue;

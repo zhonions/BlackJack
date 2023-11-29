@@ -40,5 +40,18 @@ public class Jogador {
 	public void setPontos(int pontos) {
 		this.pontos = pontos;
 	}
+	public void nextMove(Baralho baralho){
+		while (this.nome.equals("Banca")) {
+			if (this.pontos > 17){
+				break;
+			}
+			Carta carta = baralho.remover();
+			if (carta.getValor() == 11 && this.pontos + carta.getValor() > 21) {
+				carta.setValor(1);
+			}
+			addCarta(carta);
+		}
+
+	}
 	
 }
