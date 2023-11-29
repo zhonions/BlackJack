@@ -11,6 +11,11 @@ public class Colors {
     private String bold = "\u001b[1m";
     private String resetColor = "\u001b[0m";
 
+    private String backBlue = "\u001b[48;5;27m";
+
+    public String getBackBlue() {
+        return backBlue;
+    }
 
     public String getBold() {
         return bold;
