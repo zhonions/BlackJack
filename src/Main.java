@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +9,11 @@ public class Main {
         menus.imageASII();
         menus.printBlackJack();
         BlackJack blackJack = new BlackJack();
-        blackJack.blackJack();
+        Scanner scanner =new Scanner(System.in);
+        boolean continuarJogo = true;
+        while (continuarJogo) {
+            blackJack.blackJack();
+            System.exit(0);
+        }
     }
 }

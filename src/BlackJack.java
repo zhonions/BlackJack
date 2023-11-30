@@ -6,7 +6,6 @@ public class BlackJack {
 
     private Baralho baralho;
     private ArrayList<Jogador> jogadores;
-    private Scanner scan = new Scanner(System.in);
     private int pontosMaior = 0;
     private int opcaoJogo = 1;
 
@@ -31,62 +30,64 @@ public class BlackJack {
 
         //Inicio
         while (opcao >= 1) {
+            try {
+                //Menu Inicial
+                Scanner scan = new Scanner(System.in);
+                System.out.println();
+                System.out.println("------ Digite sua opção -------");
+                System.out.println();
+                System.out.println("1 - Adicionar Jogador");
+                System.out.println("2 - Iniciar Jogo");
+                System.out.println("0 - Sair");
+                opcao = scan.nextInt();
 
-            //Menu Inicial
-            System.out.println();
-            System.out.println("------ Digite sua opção -------");
-            System.out.println();
-            System.out.println("1 - Adicionar Jogador");
-            System.out.println("2 - Iniciar Jogo");
-            System.out.println("0 - Sair");
-            opcao = scan.nextInt();
+                if (opcao == 1) {
+                    jogador = new Jogador();
+                    System.out.println("\nDigite o nome do jogador:");
+                    scan.nextLine();
+                    nome = scan.nextLine();
+                    jogador.setNome(nome);
+                    jogadores.add(jogador);
+                }
+                if (opcao == 2) {
+                    if (jogadores.size() < 2) {
+                        System.out.println("Voce precisa adicionar jogadores!!!");
+                    } else {
+                        while (opcaoJogo >= 1) {
 
-            //Add jogador
-            if (opcao == 1) {
-                jogador = new Jogador();
-                System.out.println("\nDigite o nome do jogador:");
-                nome = new String(scan.next());
-                jogador.setNome(nome);
-                jogadores.add(jogador);
-            }
-
-            //Jogo
-            if (opcao == 2) {
-                if (jogadores.size() < 2) {
-                    System.out.println("Voce precisa adicionar jogadores!!!");
-                } else {
-                    while (opcaoJogo >= 1) {
-
-                        //primeira rodada
-                        if (opcaoJogo == 1) {
-                            darCartas(jogadores, baralho);
-                            opcaoJogo = 2;
-                        }
-
-                        //demais rodadas
-                        else if (opcaoJogo == 2) {
-
-                            for (int j = (jogadores.size() - 1); j >= 0; j--) {
-                                if (j != 0) {
-                                    while (jogadores.get(j).getPontos() <= 21 && opcaoJogo != 3) {
-
-                                        jogar(jogadores.get(j), baralho);
-                                        break;
-
-                                    }
-                                }
-                                jogadores.get(0).nextMove(baralho);
+                            //primeira rodada
+                            if (opcaoJogo == 1) {
+                                darCartas(jogadores, baralho);
                                 opcaoJogo = 2;
                             }
-                            opcaoJogo = -1;
-                            vencedor();
-                        }
-                    }
-                    opcao = -1;
-                }
-            }
 
+                            //demais rodadas
+                            else if (opcaoJogo == 2) {
+
+                                jogador = jogadores.get(1);
+
+                                while (jogador.getPontos() <= 21 && opcaoJogo != 3) {
+                                    jogar(jogador, baralho);
+                                }
+                                if (jogador.getPontos() > 21) {
+                                    vencedor(jogadores.get(0));
+                                    break;
+                                } else if (jogador.getPontos() <= 21) {
+                                    vencedor(jogador);
+                                    break;
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Introduza um valor correto");
+                //blackJack();
+            }
         }
+
     }
 
 
@@ -98,7 +99,7 @@ public class BlackJack {
         }
     }
 
-    public static void mostrarMesa(ArrayList<Jogador> jogadores) {
+    public void mostrarMesa(ArrayList<Jogador> jogadores) {
         System.out.println();
         System.out.println(colors.getBold() + colors.getLightYellow() +
                 "___  ___                \n" +
@@ -121,9 +122,7 @@ public class BlackJack {
                     System.out.println(colors.getBackWhite() + colors.getBlack() + carta.getNome() + colors.getResetColor());
                 }
             }
-
-            System.out.println("Pontos -> ");
-            System.out.println("\t" + jogador.getPontos());
+            System.out.println("Pontos -> " + jogador.getPontos());
             System.out.println();
         }
         System.out.println();
@@ -137,22 +136,21 @@ public class BlackJack {
         System.out.println("------ Digite sua opção -------");
         System.out.println("2 - Hit (receber uma carta)");
         System.out.println("3 - Stand (encerrar mao)");
+        Scanner scan = new Scanner(System.in);
         opcaoJogo = scan.nextInt();
         if (opcaoJogo == 2) {
             jogador.addCarta(baralho.remover());
         }
-
         //stand
         if (opcaoJogo == 3) {
             System.out.println("Opcao:  Stand -> Pontos: " + jogador.getPontos());
         }
+    }
 
+    public void vencedor(Jogador jogador) {
         if (jogador.getPontos() >= pontosMaior && jogador.getPontos() <= 21) {
             pontosMaior = jogador.getPontos();
         }
-    }
-
-    public void vencedor() {
         int contEmpate = 0;
 
         System.out.println("--------------");
